@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F3E4C8">
+<title>70-е годы — кафе на проспекте Ленина, Петрозаводск</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Кафе в стиле 70-х в центре Петрозаводска: домашняя русская кухня, завтраки, бизнес-ланч, банкеты. 4,7 на Яндекс Картах. Бронь стола онлайн.">
+<link rel="canonical" href="https://abaldyu.github.io/cafe70s-demo/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:url" content="https://abaldyu.github.io/cafe70s-demo/">
+<meta property="og:title" content="70-е годы — кафе на проспекте Ленина, Петрозаводск">
+<meta property="og:description" content="Кафе в стиле 70-х в центре Петрозаводска: домашняя русская кухня, завтраки, бизнес-ланч, банкеты. 4,7 на Яндекс Картах. Бронь стола онлайн.">
+<meta property="og:image" content="https://abaldyu.github.io/cafe70s-demo/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CafeOrCoffeeShop", "name": "70-е годы", "alternateName": "Cafe 70's", "description": "Кафе в стиле 70-х: русская кухня, завтраки, бизнес-ланч, банкеты", "url": "https://abaldyu.github.io/cafe70s-demo/", "image": "https://abaldyu.github.io/cafe70s-demo/og.jpg", "telephone": "+7 (8142) 76-47-55", "servesCuisine": "Русская", "priceRange": "300–600 ₽", "acceptsReservations": true, "address": {"@type": "PostalAddress", "streetAddress": "просп. Ленина, 10", "addressLocality": "Петрозаводск", "addressRegion": "Республика Карелия", "postalCode": "185035", "addressCountry": "RU"}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "10:00", "closes": "22:00"}], "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.7", "ratingCount": "1061"}}</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%233A2212%22/%3E%3Cpath d=%22M4 26a12 12 0 0 1 24 0%22 fill=%22none%22 stroke=%22%23E3A82B%22 stroke-width=%223%22/%3E%3Cpath d=%22M8.5 26a7.5 7.5 0 0 1 15 0%22 fill=%22none%22 stroke=%22%23D9661F%22 stroke-width=%223%22/%3E%3Cpath d=%22M13 26a3 3 0 0 1 6 0%22 fill=%22none%22 stroke=%22%23A63D1C%22 stroke-width=%223%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ===== «70-е годы»: кузов «меню-плакат». Мотор (меню из CSV, бронь, статус) общий с шаблоном Калитка ===== */
+:root{
+  --paper:#F3E4C8; --paper-2:#EAD3AC; --card:#FBF2E1; --ink:#3A2212; --ink-2:#6F4F37; --rule:#D9BE93;
+  --mustard:#E3A82B; --orange:#D9661F; --rust:#A63D1C; --brown:#5A3417; --on-accent:#FFF6E6;
+  --r:4px; --max:1140px;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#24160C; --paper-2:#2E1D10; --card:#311F12; --ink:#F3E4C8; --ink-2:#CDB08C; --rule:#4C3420; --brown:#7A4A22; --rust:#E2703F; }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{overflow-x:clip;background:var(--paper);color:var(--ink);font:16px/1.6 Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:76px}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,.disp{font-family:Unbounded,system-ui,sans-serif;font-weight:900;line-height:1;letter-spacing:-.01em;text-wrap:balance}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 24px;border-radius:999px;font:inherit;font-weight:700;text-decoration:none;border:2px solid var(--ink);cursor:pointer;transition:transform .15s,background-color .15s,color .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn-main{background:var(--rust);border-color:var(--rust);color:var(--on-accent)}
+.btn-line{background:transparent;color:var(--ink)}
+.btn:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+
+/* полосы 70-х */
+.stripes{display:grid;gap:5px}
+.stripes i{display:block;height:8px;border-radius:99px}
+.stripes i:nth-child(1){background:var(--mustard)}.stripes i:nth-child(2){background:var(--orange)}.stripes i:nth-child(3){background:var(--rust)}.stripes i:nth-child(4){background:var(--brown)}
+
+.demo-bar{background:var(--ink);color:var(--paper);font-size:13px;line-height:1.4;text-align:center;padding:8px 16px}
+
+/* шапка */
+header{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:2px solid var(--ink)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:62px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:Unbounded;font-weight:900;font-size:19px}
+.logo svg{width:34px;height:34px}
+nav.desk{display:none}
+.burger{width:44px;height:44px;border:2px solid var(--ink);border-radius:50%;background:none;color:var(--ink);cursor:pointer;display:grid;place-items:center}
+.drawer{display:none;flex-direction:column;padding:4px 20px 18px;border-top:1px solid var(--rule)}
+.drawer.open{display:flex}
+.drawer a{padding:14px 0;border-bottom:1px solid var(--rule);text-decoration:none;font-family:Unbounded;font-weight:700;font-size:18px}
+
+/* первый экран: плакат */
+.poster{padding:28px 0 56px;position:relative;overflow:hidden}
+.poster .wrap{display:grid;gap:34px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:14px;font-weight:700;color:var(--ink-2)}
+.status{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--ink);border-radius:99px;padding:4px 12px;color:var(--ink)}
+.dot{width:9px;height:9px;border-radius:50%;background:#3E9A55}
+.dot.off{background:var(--rust)}
+.poster h1{font-size:clamp(68px,22vw,168px);margin:18px 0 6px;line-height:.86;letter-spacing:-.04em}
+.poster h1 span{display:block;font-size:.34em;letter-spacing:.02em;color:var(--rust);margin-top:.35em}
+.poster .lead{font-size:18px;max-width:30em;margin:18px 0 26px}
+.poster .actions{display:flex;flex-wrap:wrap;gap:12px}
+.poster .stripes{max-width:260px;margin-top:6px}
+.sun{position:absolute;right:-150px;top:-150px;width:300px;height:300px;z-index:-1;opacity:.9}
+.poster{isolation:isolate}
+.meta>span{background:var(--paper)}
+.meta>span:not(.status){padding:2px 8px;border-radius:99px}
+.photo-card{background:var(--card);padding:12px 12px 16px;border:2px solid var(--ink);transform:rotate(2deg);box-shadow:8px 8px 0 var(--ink);max-width:460px;justify-self:center}
+.photo-card img{aspect-ratio:4/3;object-fit:cover;width:100%;filter:sepia(.35) saturate(1.15) contrast(1.02)}
+.photo-card p{font-size:13px;color:var(--ink-2);margin-top:10px;text-align:center}
+.badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.badge{width:104px;height:104px;border-radius:50%;display:grid;place-content:center;text-align:center;background:var(--mustard);color:var(--ink);border:2px solid var(--ink);font-size:12px;line-height:1.25;padding:10px}
+.badge:nth-child(2){background:var(--orange);color:var(--on-accent)}
+.badge:nth-child(3){background:var(--brown);color:var(--on-accent)}
+.badge b{display:block;font-family:Unbounded;font-weight:900;font-size:20px;line-height:1.1;white-space:nowrap}
+
+section{padding:64px 0}
+.kicker{font-family:Unbounded;font-weight:700;font-size:13px;letter-spacing:.02em;color:var(--rust);margin-bottom:10px}
+.sec-h{font-size:clamp(32px,8vw,60px);margin-bottom:28px}
+.note{font-size:14px;color:var(--ink-2);margin-top:14px}
+
+/* меню-бланк */
+.menu-sec{background:var(--paper-2);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.menu-card{background:var(--card);border:3px solid var(--ink);outline:1px solid var(--ink);outline-offset:-9px;padding:34px 22px 26px;max-width:980px;margin:0 auto}
+.menu-head{text-align:center;margin-bottom:18px}
+.menu-head h2{font-size:clamp(40px,11vw,84px);letter-spacing:.04em}
+.menu-head p{font-size:14px;color:var(--ink-2);margin-top:6px}
+.menu-head .stripes{max-width:200px;margin:14px auto 0}
+.menu-cols{display:grid;gap:8px 48px}
+.msec{break-inside:avoid;margin-top:22px}
+.msec h3{font-size:18px;color:var(--rust);text-transform:uppercase;letter-spacing:.04em;padding-bottom:6px;border-bottom:2px solid var(--ink);margin-bottom:4px}
+.mrow{display:flex;align-items:baseline;gap:8px;padding:7px 0}
+.mrow .n{font-weight:700}
+.mrow small{display:block;font-size:13px;color:var(--ink-2);font-weight:400}
+.mrow .lead-dots{flex:1;border-bottom:2px dotted var(--rule);transform:translateY(-4px);min-width:16px}
+.mrow .p{font-family:Unbounded;font-weight:700;font-size:16px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.mrow.out{opacity:.5}.mrow.out .p{text-decoration:line-through}
+
+/* распорядок дня */
+.day{display:grid;gap:0;border-left:3px solid var(--ink);margin-left:8px}
+.step{position:relative;padding:0 0 26px 26px}
+.step::before{content:"";position:absolute;left:-11px;top:2px;width:19px;height:19px;border-radius:50%;background:var(--mustard);border:3px solid var(--ink)}
+.step:nth-child(2)::before{background:var(--orange)}.step:nth-child(3)::before{background:var(--rust)}.step:nth-child(4)::before{background:var(--brown)}
+.step time{font-family:Unbounded;font-weight:900;font-size:22px;display:block}
+.step b{display:block;font-size:17px;margin-top:2px}
+.step p{color:var(--ink-2)}
+.extras{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.extras span{border:2px solid var(--ink);border-radius:99px;padding:6px 14px;font-weight:700;font-size:14px}
+
+/* атмосфера: снимки */
+.snaps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.snap{background:var(--card);border:2px solid var(--ink);padding:8px 8px 12px}
+.snap img{aspect-ratio:1;object-fit:cover;width:100%;filter:sepia(.35) saturate(1.15)}
+.snap:nth-child(odd){transform:rotate(-1.5deg)}.snap:nth-child(even){transform:rotate(1.2deg)}
+.snap p{font-size:12px;color:var(--ink-2);margin-top:8px;text-align:center}
+
+/* отзывы */
+.praise{display:grid;gap:14px}
+.pr{border:2px solid var(--ink);background:var(--card);padding:22px;border-radius:var(--r)}
+.pr .w{font-family:Unbounded;font-weight:900;font-size:30px;color:var(--rust)}
+.pr p{margin-top:6px}
+
+/* бронь: талон */
+.ticket{display:grid;background:var(--brown);color:var(--on-accent);border-radius:14px;position:relative;overflow:hidden}
+.ticket .stub{padding:28px 24px;border-bottom:3px dashed rgba(255,246,230,.45)}
+.ticket .stub .no{font-family:Unbounded;font-weight:900;font-size:13px;letter-spacing:.06em;color:var(--mustard)}
+.ticket h2{font-size:clamp(30px,7vw,46px);margin:10px 0 12px;color:var(--on-accent)}
+.ticket .stub p{color:rgba(255,246,230,.82)}
+form{display:grid;gap:12px;padding:26px 24px}
+label{display:grid;gap:6px;font-size:14px;min-width:0}
+input,select{width:100%;min-width:0;min-height:50px;border-radius:10px;border:2px solid rgba(255,246,230,.35);background:rgba(255,246,230,.08);color:var(--on-accent);padding:0 14px;font:inherit;font-size:16px}
+input::placeholder{color:rgba(255,246,230,.55)}
+select option{color:#222}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label.consent{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.45;color:rgba(255,246,230,.8);cursor:pointer}
+label.consent input{min-height:0;width:20px;height:20px;flex:none;margin-top:1px;accent-color:var(--mustard);padding:0}
+label.consent.err{color:#FFB4A8}
+.ticket .btn-main{background:var(--mustard);border-color:var(--mustard);color:var(--ink)}
+.ok{display:none;background:rgba(255,246,230,.1);border-radius:10px;padding:16px}
+.ok.show{display:block}
+
+/* вопросы */
+.faq{display:grid;gap:10px;max-width:820px}
+.faq details{border:2px solid var(--ink);border-radius:var(--r);background:var(--card)}
+.faq summary{cursor:pointer;list-style:none;padding:16px 52px 16px 18px;font-weight:700;position:relative;min-height:44px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:18px;top:50%;transform:translateY(-50%);font-family:Unbounded;font-weight:900;font-size:22px;color:var(--rust);transition:transform .2s}
+.faq details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+.faq details p{padding:0 18px 16px;color:var(--ink-2)}
+
+/* контакты: визитка */
+.contacts{display:grid;gap:22px}
+.vcard{border:3px solid var(--ink);background:var(--card);padding:26px 22px}
+.vcard h3{font-size:26px;margin-bottom:14px}
+.vrow{display:grid;gap:2px;padding:10px 0;border-top:1px solid var(--rule)}
+.vrow span{font-size:13px;color:var(--ink-2)}
+.vrow b{font-size:17px}
+.map{border:3px solid var(--ink);min-height:320px;background:var(--paper-2)}
+.map iframe{width:100%;height:360px;border:0;display:block}
+
+footer{padding:30px 0 34px;border-top:2px solid var(--ink);font-size:14px;color:var(--ink-2)}
+
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:6px;background:var(--paper);border-top:2px solid var(--ink);padding:8px 8px calc(8px + env(safe-area-inset-bottom))}
+.dock a{display:grid;place-items:center;min-height:52px;text-decoration:none;font-size:13px;font-weight:700;border-radius:99px;border:2px solid var(--ink)}
+.dock a.main{background:var(--rust);border-color:var(--rust);color:var(--on-accent)}
+
+@media (min-width:760px){
+  body{padding-bottom:0}
+  .dock,.burger,.drawer{display:none!important}
+  nav.desk{display:flex;gap:26px;align-items:center;font-weight:700}
+  nav.desk a{text-decoration:none}
+  nav.desk a:not(.btn):hover{color:var(--rust)}
+  nav.desk .btn{min-height:42px}
+  .poster{padding:56px 0 72px}
+  .poster .wrap{grid-template-columns:1.15fr .85fr;align-items:center}
+  .sun{right:-80px;top:-120px;width:620px;height:620px}
+  .menu-card{padding:48px 52px 36px}
+  .menu-cols{grid-template-columns:1fr 1fr}
+  .daygrid{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:start}
+  .snaps{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .praise{grid-template-columns:repeat(3,1fr)}
+  .ticket{grid-template-columns:.85fr 1.15fr}
+  .ticket .stub{border-bottom:0;border-right:3px dashed rgba(255,246,230,.45);padding:44px 36px}
+  form{padding:40px 36px}
+  .contacts{grid-template-columns:.9fr 1.1fr;align-items:stretch}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .btn,.faq summary::after{transition:none}
+}
+</style>
+</head>
+<body>
+<div class="demo-bar">Демо-концепт сайта для кафе «70-е годы». Сделан по открытым данным с карт, чтобы показать идею. Это не официальный сайт.</div>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#top" aria-label="70-е годы — на главную"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M3 27a13 13 0 0 1 26 0" stroke="var(--mustard)" stroke-width="3.2"/><path d="M8 27a8 8 0 0 1 16 0" stroke="var(--orange)" stroke-width="3.2"/><path d="M12.8 27a3.2 3.2 0 0 1 6.4 0" stroke="var(--rust)" stroke-width="3.2"/></svg>70-е годы</a>
+    <nav class="desk" aria-label="Разделы">
+      <a href="#menu">Меню</a><a href="#day">Распорядок</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a>
+      <a class="btn btn-main" href="#book">Бронь стола</a>
+    </nav>
+    <button class="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="drawer"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 8h14M5 16h14"/></svg></button>
+  </div>
+  <div class="drawer wrap" id="drawer">
+    <a href="#menu">Меню</a><a href="#day">Распорядок</a><a href="#reviews">Отзывы</a><a href="#book">Бронь стола</a><a href="#contacts">Контакты</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="poster" aria-label="О кафе">
+  <svg class="sun" viewBox="0 0 400 400" aria-hidden="true"><g fill="none" stroke-width="34"><circle cx="200" cy="200" r="183" stroke="var(--mustard)"/><circle cx="200" cy="200" r="141" stroke="var(--orange)"/><circle cx="200" cy="200" r="99" stroke="var(--rust)"/><circle cx="200" cy="200" r="57" stroke="var(--brown)"/></g></svg>
+  <div class="wrap">
+    <div>
+      <div class="meta"><span class="status"><span class="dot" id="dot"></span><span id="open-text">Открыто</span></span><span>просп. Ленина, 10</span></div>
+      <h1>70-е годы<span>кафе в центре Петрозаводска</span></h1>
+      <div class="stripes" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <p class="lead">Три небольших зала в стиле 70-х. Домашняя русская кухня: солянка, пельмени в горшочке, судак по-русски, блинчики. Утром — завтраки, днём — бизнес-ланч, вечером — компанией.</p>
+      <div class="actions"><a class="btn btn-main" href="#book">Забронировать стол</a><a class="btn btn-line" href="#menu">Меню и цены</a></div>
+      <div class="badges">
+        <div class="badge"><b>4,7★</b>1061 оценка<br>на Яндекс Картах</div>
+        <div class="badge"><b>3 зала</b>в ретро-стиле</div>
+        <div class="badge"><b>10–22</b>каждый день</div>
+      </div>
+    </div>
+    <figure class="photo-card">
+      <img src="img/people.jpg" alt="Зал кафе (фото-заглушка)" fetchpriority="high">
+      <p>Здесь будет фото вашего зала</p>
+    </figure>
+  </div>
+</section>
+
+<section class="menu-sec" id="menu">
+  <div class="wrap">
+    <div class="menu-card">
+      <div class="menu-head">
+        <h2>МЕНЮ</h2>
+        <p>Цены в рублях · из карточки 2ГИС</p>
+        <div class="stripes" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="menu-cols" id="lists"><div><div class="msec"><h3>Горячее</h3><div class="mrow"><span class="n">Судак по-русски</span><span class="lead-dots"></span><span class="p">480 ₽</span></div><div class="mrow"><span class="n">Форель в сливках</span><span class="lead-dots"></span><span class="p">450 ₽</span></div><div class="mrow"><span class="n">Курочка по-деревенски</span><span class="lead-dots"></span><span class="p">450 ₽</span></div><div class="mrow"><span class="n">Куриный шашлычок</span><span class="lead-dots"></span><span class="p">380 ₽</span></div><div class="mrow"><span class="n">Шницель из свинины</span><span class="lead-dots"></span><span class="p">380 ₽</span></div><div class="mrow"><span class="n">Пельмени в горшочке</span><span class="lead-dots"></span><span class="p">360 ₽</span></div><div class="mrow"><span class="n">Солянка «по-домашнему»<small>фирменная</small></span><span class="lead-dots"></span><span class="p">250 ₽</span></div></div><div class="msec"><h3>Салаты</h3><div class="mrow"><span class="n">Салат с говядиной</span><span class="lead-dots"></span><span class="p">360 ₽</span></div><div class="mrow"><span class="n">Цезарь с курицей</span><span class="lead-dots"></span><span class="p">320 ₽</span></div><div class="mrow"><span class="n">Тёплый салат с курицей</span><span class="lead-dots"></span><span class="p">280 ₽</span></div><div class="mrow"><span class="n">Салат со свёклой</span><span class="lead-dots"></span><span class="p">280 ₽</span></div><div class="mrow"><span class="n">Салат нежный<small>с форелью и крабовыми палочками</small></span><span class="lead-dots"></span><span class="p">280 ₽</span></div><div class="mrow"><span class="n">Греческий салат</span><span class="lead-dots"></span><span class="p">260 ₽</span></div><div class="mrow"><span class="n">Оливье с ветчиной</span><span class="lead-dots"></span><span class="p">260 ₽</span></div></div></div><div><div class="msec"><h3>Завтраки и закуски</h3><div class="mrow"><span class="n">Сырники со сметаной</span><span class="lead-dots"></span><span class="p">220 ₽</span></div><div class="mrow"><span class="n">Блинчики с форелью<small>и творожным сыром</small></span><span class="lead-dots"></span><span class="p">260 ₽</span></div><div class="mrow"><span class="n">Блинчики жульен<small>с грибами</small></span><span class="lead-dots"></span><span class="p">240 ₽</span></div><div class="mrow"><span class="n">Сэндвич с яйцом и беконом</span><span class="lead-dots"></span><span class="p">210 ₽</span></div><div class="mrow"><span class="n">Сэндвич с ветчиной и сыром</span><span class="lead-dots"></span><span class="p">210 ₽</span></div><div class="mrow"><span class="n">Бутерброд со шпротами и яйцом</span><span class="lead-dots"></span><span class="p">210 ₽</span></div></div><div class="msec"><h3>К пиву</h3><div class="mrow"><span class="n">Тарелка к пиву</span><span class="lead-dots"></span><span class="p">420 ₽</span></div><div class="mrow"><span class="n">Сырное ассорти с мёдом</span><span class="lead-dots"></span><span class="p">320 ₽</span></div><div class="mrow"><span class="n">Крылья</span><span class="lead-dots"></span><span class="p">230 ₽</span></div><div class="mrow"><span class="n">Гренки чесночные<small>с салом и хреном</small></span><span class="lead-dots"></span><span class="p">210 ₽</span></div></div><div class="msec"><h3>Напитки</h3><div class="mrow"><span class="n">Капучино</span><span class="lead-dots"></span><span class="p">160 ₽</span></div><div class="mrow"><span class="n">Эспрессо</span><span class="lead-dots"></span><span class="p">120 ₽</span></div><div class="mrow"><span class="n">Американо</span><span class="lead-dots"></span><span class="p">120 ₽</span></div><div class="mrow"><span class="n">Чай зелёный<small>чайник 600 мл</small></span><span class="lead-dots"></span><span class="p">220 ₽</span></div></div></div></div>
+    </div>
+    <p class="note" style="text-align:center">Меню взято из 2ГИС (обновлено в марте 2025). На рабочем сайте меню правится через гугл-таблицу, без программиста.</p>
+  </div>
+</section>
+
+<section id="day">
+  <div class="wrap daygrid">
+    <div>
+      <p class="kicker">Распорядок дня</p>
+      <h2 class="sec-h">С утра до вечера</h2>
+      <div class="day">
+        <div class="step"><time>10:00</time><b>Завтраки до 12</b><p>Сырники со сметаной, блинчики, сэндвичи и кофе.</p></div>
+        <div class="step"><time>Обед</time><b>Бизнес-ланч</b><p>Быстро и недорого. Актуальный ланч уточняйте у администратора.</p></div>
+        <div class="step"><time>Вечер</time><b>Посидеть компанией</b><p>Горячее, закуски к пиву, вино. Залы небольшие — удобно на день рождения или встречу.</p></div>
+        <div class="step"><time>22:00</time><b>Закрываемся</b><p>Каждый день, без выходных.</p></div>
+      </div>
+    </div>
+    <div>
+      <p class="kicker">Ещё у нас</p>
+      <div class="extras"><span>Летняя веранда</span><span>Доставка</span><span>Навынос</span><span>Кофе с собой</span><span>Банкеты</span><span>Предзаказ</span><span>Wi-Fi</span><span>Можно с собакой</span></div>
+      <div class="snaps" style="margin-top:28px">
+        <figure class="snap"><img src="img/window.jpg" alt="Столик у окна (фото-заглушка)" loading="lazy"><p>фото-заглушка</p></figure>
+        <figure class="snap"><img src="img/espresso.jpg" alt="Кофе (фото-заглушка)" loading="lazy"><p>фото-заглушка</p></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" style="background:var(--paper-2);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)">
+  <div class="wrap">
+    <p class="kicker">Отзывы · 4,7 на Яндекс Картах</p>
+    <h2 class="sec-h">За что нас хвалят</h2>
+    <div class="praise">
+      <div class="pr"><div class="w">Вкусно</div><p>Большой выбор, отдельно хвалят выпечку с творогом и вишней.</p></div>
+      <div class="pr"><div class="w">Быстро</div><p>Приветливо и без ожидания. Бронь и предзаказ — всё готово к приходу.</p></div>
+      <div class="pr"><div class="w">Уютно</div><p>Небольшие ретро-залы, удобно компанией, цены доступные.</p></div>
+    </div>
+    <p class="note">Пересказ отзывов на Яндекс Картах. На рабочем сайте здесь будут сами отзывы — виджетом с карт.</p>
+  </div>
+</section>
+
+<section id="book">
+  <div class="wrap">
+    <div class="ticket">
+      <div class="stub">
+        <div class="no">ТАЛОН № 0070 · БРОНЬ</div>
+        <h2>Забронируйте стол или зал</h2>
+        <p>Оставьте заявку — администратор перезвонит и подтвердит. Можно сразу сделать предзаказ, чтобы всё было готово к вашему приходу.</p>
+      </div>
+      <form id="form" novalidate>
+        <label>Имя<input name="name" required placeholder="Как к вам обращаться" autocomplete="given-name"></label>
+        <label>Телефон<input name="phone" type="tel" required placeholder="+7 900 000-00-00" inputmode="tel" autocomplete="tel"></label>
+        <div class="row2">
+          <label>Дата<input name="date" type="date" required></label>
+          <label>Время<input name="time" type="time" required value="19:00" min="10:00" max="21:00"></label>
+        </div>
+        <label>Гостей<select name="guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5–8</option><option>Банкет, больше 8</option></select></label>
+        <label class="consent"><input type="checkbox" name="consent" required> <span>Согласен на обработку персональных данных по <a href="privacy.html" target="_blank">политике конфиденциальности</a></span></label>
+        <button class="btn btn-main" type="submit">Отправить заявку</button>
+        <div class="ok" id="ok" role="status"><b>Заявка принята!</b><br>Администратор перезвонит, чтобы подтвердить бронь.<br><small style="opacity:.75">На рабочем сайте заявка сразу приходит владельцу в Telegram.</small></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:8px">
+  <div class="wrap">
+    <h2 class="sec-h">Частые вопросы</h2>
+    <div class="faq">
+      <details><summary>Можно забронировать стол?</summary><p>Да — заявкой на сайте, по телефону или в WhatsApp. Предзаказ блюд тоже можно, приготовим к сроку.</p></details>
+      <details><summary>Есть бизнес-ланч?</summary><p>Да, в обеденное время. Актуальное меню ланча уточняйте у администратора.</p></details>
+      <details><summary>Можно устроить банкет?</summary><p>Да, залы небольшие и уютные — отлично для дня рождения или встречи компанией. Банкетное меню по запросу.</p></details>
+      <details><summary>Есть доставка?</summary><p>Да, а ещё еда и кофе навынос.</p></details>
+      <details><summary>Как оплатить?</summary><p>Наличными, картой, по QR-коду или СБП.</p></details>
+      <details><summary>Можно с собакой?</summary><p>Да, с собакой можно.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="contacts" style="padding-top:8px">
+  <div class="wrap contacts">
+    <div class="vcard">
+      <h3>Как нас найти</h3>
+      <div class="vrow"><span>Адрес</span><b>Петрозаводск, просп. Ленина, 10, 1 этаж</b></div>
+      <div class="vrow"><span>Время работы</span><b>Каждый день 10:00–22:00</b></div>
+      <div class="vrow"><span>Телефон</span><b><a href="tel:+78142764755">+7 (8142) 76-47-55</a></b></div>
+      <div class="vrow"><span>Написать</span><b><a href="https://wa.me/79114119167" target="_blank" rel="noopener">WhatsApp</a> · <a href="https://vk.ru/70e_godi" target="_blank" rel="noopener">ВКонтакте</a></b></div>
+    </div>
+    <div class="map"><iframe src="https://yandex.ru/map-widget/v1/?oid=1075905306&z=16" title="Карта: кафе 70-е годы, проспект Ленина, 10" allowfullscreen loading="lazy"></iframe></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">Демо-концепт для кафе «70-е годы», Петрозаводск. Данные — открытые карточки Яндекс Карт и 2ГИС, фото-заглушки — Unsplash. <a href="privacy.html">Политика конфиденциальности</a></div>
+</footer>
+
+<nav class="dock" aria-label="Быстрые действия">
+  <a href="tel:+78142764755">Позвонить</a>
+  <a href="https://yandex.ru/maps/org/70_ye_gody/1075905306/" target="_blank" rel="noopener">Маршрут</a>
+  <a class="main" href="#book">Бронь стола</a>
+</nav>
+
+<script>
+// мобильное меню
+const burger = document.querySelector('.burger'), drawer = document.getElementById('drawer');
+burger.addEventListener('click', () => burger.setAttribute('aria-expanded', drawer.classList.toggle('open')));
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { drawer.classList.remove('open'); burger.setAttribute('aria-expanded', false); }));
+
+// открыто / закрыто: каждый день 10–22
+(() => {
+  const d = new Date(), h = d.getHours() + d.getMinutes() / 60, open = h >= 10 && h < 22;
+  document.getElementById('dot').classList.toggle('off', !open);
+  document.getElementById('open-text').textContent = open ? 'Открыто до 22:00' : 'Закрыто · откроемся в 10:00';
+})();
+
+// ===== МЕНЮ ИЗ ГУГЛ-ТАБЛИЦЫ =====
+// Вставь сюда ссылку «Опубликовать в интернете → CSV». Пусто = берём меню, вшитое ниже.
+const SHEET_CSV_URL = '';
+const DEFAULT_CSV = `раздел,название,описание,цена,метка,в наличии,фото
+Горячее,Судак по-русски,,480,,да,
+Горячее,Форель в сливках,,450,,да,
+Горячее,Курочка по-деревенски,,450,,да,
+Горячее,Куриный шашлычок,,380,,да,
+Горячее,Шницель из свинины,,380,,да,
+Горячее,Пельмени в горшочке,,360,,да,
+Горячее,Солянка «по-домашнему»,фирменная,250,,да,
+Салаты,Салат с говядиной,,360,,да,
+Салаты,Цезарь с курицей,,320,,да,
+Салаты,Тёплый салат с курицей,,280,,да,
+Салаты,Салат со свёклой,,280,,да,
+Салаты,Салат нежный,с форелью и крабовыми палочками,280,,да,
+Салаты,Греческий салат,,260,,да,
+Салаты,Оливье с ветчиной,,260,,да,
+Завтраки и закуски,Сырники со сметаной,,220,,да,
+Завтраки и закуски,Блинчики с форелью,и творожным сыром,260,,да,
+Завтраки и закуски,Блинчики жульен,с грибами,240,,да,
+Завтраки и закуски,Сэндвич с яйцом и беконом,,210,,да,
+Завтраки и закуски,Сэндвич с ветчиной и сыром,,210,,да,
+Завтраки и закуски,Бутерброд со шпротами и яйцом,,210,,да,
+К пиву,Тарелка к пиву,,420,,да,
+К пиву,Сырное ассорти с мёдом,,320,,да,
+К пиву,Крылья,,230,,да,
+К пиву,Гренки чесночные,с салом и хреном,210,,да,
+Напитки,Капучино,,160,,да,
+Напитки,Эспрессо,,120,,да,
+Напитки,Американо,,120,,да,
+Напитки,Чай зелёный,чайник 600 мл,220,,да,
+`;
+
+function parseCSV(text) {
+  const rows = []; let row = [], cell = '', q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) {
+      if (c === '"' && text[i + 1] === '"') { cell += '"'; i++; }
+      else if (c === '"') q = false;
+      else cell += c;
+    } else if (c === '"') q = true;
+    else if (c === ',') { row.push(cell); cell = ''; }
+    else if (c === '\n' || c === '\r') {
+      if (c === '\r' && text[i + 1] === '\n') i++;
+      row.push(cell); rows.push(row); row = []; cell = '';
+    } else cell += c;
+  }
+  if (cell || row.length) { row.push(cell); rows.push(row); }
+  return rows.filter(r => r.some(x => x.trim()));
+}
+const esc = t => String(t).replace(/[&<>"]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]));
+const price = p => { p = p.trim(); return p && !/₽|руб/i.test(p) ? p + ' ₽' : p; };
+
+// меню-бланк: все разделы сразу, в две колонки, с точками до цены
+function renderMenu(text) {
+  const [head, ...rows] = parseCSV(text);
+  const k = n => head.findIndex(h => h.trim().toLowerCase().startsWith(n));
+  const I = { sec: k('раздел'), name: k('назв'), desc: k('опис'), price: k('цен'), stock: k('в нал') };
+  const items = rows.map(r => ({
+    sec: (r[I.sec] || '').trim(), name: (r[I.name] || '').trim(), desc: (r[I.desc] || '').trim(),
+    price: price(r[I.price] || ''), out: /^(нет|0|закончил)/i.test((r[I.stock] || '').trim()),
+  })).filter(x => x.sec && x.name);
+  if (!items.length) throw new Error('пустое меню');
+  const secs = [...new Set(items.map(x => x.sec))];
+  // делим разделы на две колонки примерно поровну по числу строк
+  const total = items.length; let acc = 0; const cols = [[], []];
+  secs.forEach(s => { const n = items.filter(x => x.sec === s).length; cols[acc + n / 2 <= total / 2 ? 0 : 1].push(s); acc += n; });
+  const block = s => `<div class="msec"><h3>${esc(s)}</h3>` + items.filter(x => x.sec === s).map(x =>
+    `<div class="mrow${x.out ? ' out' : ''}"><span class="n">${esc(x.name)}${x.desc ? `<small>${esc(x.desc)}</small>` : ''}</span><span class="lead-dots"></span><span class="p">${esc(x.price)}</span></div>`).join('') + '</div>';
+  document.getElementById('lists').innerHTML = cols.map(c => '<div>' + c.map(block).join('') + '</div>').join('');
+}
+(async () => {
+  renderMenu(DEFAULT_CSV);
+  if (!SHEET_CSV_URL) return;
+  try {
+    const r = await fetch(SHEET_CSV_URL + (SHEET_CSV_URL.includes('?') ? '&' : '?') + 't=' + Date.now());
+    if (!r.ok) throw new Error(r.status);
+    renderMenu(await r.text());
+  } catch (e) { console.warn('Меню из таблицы не загрузилось, показываю вшитое:', e); }
+})();
+
+// форма брони (в демо без отправки)
+const form = document.getElementById('form');
+const t0 = new Date(); form.date.value = `${t0.getFullYear()}-${String(t0.getMonth() + 1).padStart(2, '0')}-${String(t0.getDate()).padStart(2, '0')}`;
+form.date.min = form.date.value;
+form.consent.addEventListener('change', e => e.target.closest('label').classList.remove('err'));
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  if (!form.name.value.trim() || form.phone.value.replace(/\D/g, '').length < 10) {
+    (form.name.value.trim() ? form.phone : form.name).focus();
+    return;
+  }
+  if (!form.consent.checked) { form.consent.closest('label').classList.add('err'); return form.consent.focus(); }
+  form.consent.closest('label').classList.remove('err');
+  document.getElementById('ok').classList.add('show');
+  form.querySelector('button').disabled = true;
+});
+</script>
+</body>
+</html>
