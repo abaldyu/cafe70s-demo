@@ -173,6 +173,43 @@ label.consent.err{color:#FFB4A8}
 .map{border:3px solid var(--ink);min-height:320px;background:var(--paper-2)}
 .map iframe{width:100%;height:360px;border:0;display:block}
 
+/* корпоративы */
+.promo{display:block;background:var(--mustard);color:var(--ink);text-align:center;font-weight:700;font-size:14px;line-height:1.35;padding:10px 16px;text-decoration:none;border-bottom:2px solid var(--ink)}
+.promo b{font-family:Unbounded;font-weight:900}
+.corp{background:#3A2212;color:#F3E4C8}
+.corp-box .row2{grid-template-columns:1fr}
+.corp .kicker{color:var(--mustard)}
+.corp .sec-h{color:#F3E4C8}
+.corp-lead{font-size:18px;max-width:34em;margin:-10px 0 30px;opacity:.85}
+.perks{display:grid;gap:12px;margin-bottom:34px}
+.perk{border:2px solid rgba(243,228,200,.3);border-radius:var(--r);padding:18px 18px 16px}
+.perk b{display:block;font-family:Unbounded;font-weight:700;font-size:17px;color:var(--mustard);margin-bottom:4px}
+.perk p{font-size:15px;opacity:.85}
+.corp-box{background:var(--card);color:var(--ink);border:3px solid var(--mustard);border-radius:14px;padding:24px 20px}
+.corp-box h3{font-size:22px;margin-bottom:6px}
+.corp-box .hint{font-size:14px;color:var(--ink-2);margin-bottom:16px}
+.dates{display:grid;grid-template-columns:repeat(auto-fill,minmax(68px,1fr));gap:8px;border:0;margin-bottom:18px}
+.dates legend{font-size:14px;margin-bottom:8px}
+.dates label{display:block;position:relative;cursor:pointer}
+.dates input{position:absolute;opacity:0;width:1px;height:1px}
+.dates span{display:grid;place-items:center;min-height:64px;border:2px solid var(--ink);border-radius:10px;font-family:Unbounded;font-weight:900;font-size:20px;line-height:1.05;text-align:center;background:var(--paper)}
+.dates span small{display:block;font-family:Manrope;font-weight:700;font-size:11px;color:var(--ink-2);margin-top:3px}
+.dates input:checked+span{background:var(--rust);border-color:var(--rust);color:var(--on-accent)}
+.dates input:checked+span small{color:var(--on-accent)}
+.dates input:focus-visible+span{outline:3px solid var(--orange);outline-offset:2px}
+.dates input:disabled+span{opacity:.4;text-decoration:line-through;cursor:not-allowed;background:transparent}
+.legend-row{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--ink-2);margin:-8px 0 18px}
+.corp-box form{padding:0;gap:12px}
+.corp-box input,.corp-box select,.corp-box textarea{width:100%;min-width:0;min-height:50px;border-radius:10px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);padding:0 14px;font:inherit;font-size:16px}
+.corp-box textarea{min-height:84px;padding:12px 14px;resize:vertical}
+.corp-box input::placeholder,.corp-box textarea::placeholder{color:var(--ink-2)}
+.corp-box label.consent{color:var(--ink-2)}
+.corp-box label.consent.err{color:var(--rust)}
+.corp-box .ok{background:var(--paper-2)}
+.corp-price{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;border-top:2px dashed var(--rule);padding-top:14px;margin-top:4px;font-size:15px}
+.corp-price b{font-family:Unbounded;font-weight:900;font-size:20px}
+.corp-price i{font-style:normal;background:var(--mustard);padding:1px 8px;border-radius:6px;font-size:13px;font-weight:700}
+
 footer{padding:30px 0 34px;border-top:2px solid var(--ink);font-size:14px;color:var(--ink-2)}
 
 .dock{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:6px;background:var(--paper);border-top:2px solid var(--ink);padding:8px 8px calc(8px + env(safe-area-inset-bottom))}
@@ -198,6 +235,9 @@ footer{padding:30px 0 34px;border-top:2px solid var(--ink);font-size:14px;color:
   .ticket .stub{border-bottom:0;border-right:3px dashed rgba(255,246,230,.45);padding:44px 36px}
   form{padding:40px 36px}
   .contacts{grid-template-columns:.9fr 1.1fr;align-items:stretch}
+  .corpgrid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  .perks{grid-template-columns:1fr 1fr}
+  .corp-box{padding:32px 30px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -212,15 +252,16 @@ footer{padding:30px 0 34px;border-top:2px solid var(--ink);font-size:14px;color:
   <div class="wrap bar">
     <a class="logo" href="#top" aria-label="70-е годы — на главную"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M3 27a13 13 0 0 1 26 0" stroke="var(--mustard)" stroke-width="3.2"/><path d="M8 27a8 8 0 0 1 16 0" stroke="var(--orange)" stroke-width="3.2"/><path d="M12.8 27a3.2 3.2 0 0 1 6.4 0" stroke="var(--rust)" stroke-width="3.2"/></svg>70-е годы</a>
     <nav class="desk" aria-label="Разделы">
-      <a href="#menu">Меню</a><a href="#day">Распорядок</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a>
+      <a href="#corp">Корпоративы</a><a href="#menu">Меню</a><a href="#day">Распорядок</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a>
       <a class="btn btn-main" href="#book">Бронь стола</a>
     </nav>
     <button class="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="drawer"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 8h14M5 16h14"/></svg></button>
   </div>
   <div class="drawer wrap" id="drawer">
-    <a href="#menu">Меню</a><a href="#day">Распорядок</a><a href="#reviews">Отзывы</a><a href="#book">Бронь стола</a><a href="#contacts">Контакты</a>
+    <a href="#corp">Корпоративы</a><a href="#menu">Меню</a><a href="#day">Распорядок</a><a href="#reviews">Отзывы</a><a href="#book">Бронь стола</a><a href="#contacts">Контакты</a>
   </div>
 </header>
+<a class="promo" href="#corp"><b>Корпоративы 20–30 декабря</b> · бронь открыта, дат осталось немного →</a>
 
 <main id="top">
 <section class="poster" aria-label="О кафе">
@@ -242,6 +283,40 @@ footer{padding:30px 0 34px;border-top:2px solid var(--ink);font-size:14px;color:
       <img src="img/people.jpg" alt="Зал кафе (фото-заглушка)" fetchpriority="high">
       <p>Здесь будет фото вашего зала</p>
     </figure>
+  </div>
+</section>
+
+<section class="corp" id="corp">
+  <div class="wrap corpgrid">
+    <div>
+      <p class="kicker">Новый год с коллегами</p>
+      <h2 class="sec-h">Корпоративы 20–30 декабря</h2>
+      <p class="corp-lead">Без пафосных банкетных залов, громкой музыки и дресс-кода. Только ваша команда, хорошая еда и атмосфера, в которой хочется общаться.</p>
+      <div class="perks">
+        <div class="perk"><b>Залы до 15 гостей</b><p>Отдельное пространство, где вашей компании никто не помешает.</p></div>
+        <div class="perk"><b>Стол от шефа</b><p>Ресторанные блюда: от сытного горячего до фирменных десертов и выпечки.</p></div>
+        <div class="perk"><b>Экран и музыка</b><p>Большой ТВ для игр, викторин и новогоднего кино, техника для вашего плейлиста.</p></div>
+        <div class="perk"><b>Свои напитки</b><p>Можно принести свой алкоголь и фрукты. Без пробкового сбора.</p></div>
+      </div>
+    </div>
+    <div class="corp-box">
+      <h3>Выберите дату</h3>
+      <p class="hint">Видно сразу, какие дни ещё свободны. Не нужно писать и ждать ответа.</p>
+      <form id="corp-form" novalidate>
+        <fieldset class="dates" id="dates"><legend>Декабрь 2026</legend></fieldset>
+        <div class="legend-row"><span>■ свободно</span><span style="text-decoration:line-through">занято</span><span>в демо занятость условная</span></div>
+        <div class="row2">
+          <label>Имя<input name="name" required placeholder="Как к вам обращаться" autocomplete="given-name"></label>
+          <label>Телефон<input name="phone" type="tel" required placeholder="+7 900 000-00-00" inputmode="tel" autocomplete="tel"></label>
+        </div>
+        <label>Гостей<select name="guests"><option>до 8</option><option selected>9–12</option><option>13–15</option><option>больше 15 (уточним)</option></select></label>
+        <label>Пожелания<textarea name="wish" placeholder="Компания, время, нужен ли экран, особые блюда"></textarea></label>
+        <label class="consent"><input type="checkbox" name="consent" required> <span>Согласен на обработку персональных данных по <a href="privacy.html" target="_blank">политике конфиденциальности</a></span></label>
+        <div class="corp-price"><span>Стол на гостя</span><b>от ___ ₽</b><i>впишем вашу цену</i></div>
+        <button class="btn btn-main" type="submit">Забронировать дату</button>
+        <div class="ok" id="corp-ok" role="status"><b>Дата придержана!</b><br>Администратор свяжется, чтобы обсудить меню и подтвердить бронь.<br><small style="opacity:.75">На рабочем сайте заявка сразу приходит в Telegram, а занятые даты администратор отмечает в гугл-таблице.</small></div>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -451,6 +526,35 @@ function renderMenu(text) {
     if (!r.ok) throw new Error(r.status);
     renderMenu(await r.text());
   } catch (e) { console.warn('Меню из таблицы не загрузилось, показываю вшитое:', e); }
+})();
+
+// ===== КОРПОРАТИВЫ: даты 20–30 декабря =====
+// На рабочем сайте занятые даты берутся из гугл-таблицы. В демо — условные.
+const CORP_BUSY = [25, 26];
+(() => {
+  const box = document.getElementById('dates');
+  const wd = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
+  let first = true;
+  for (let d = 20; d <= 30; d++) {
+    const busy = CORP_BUSY.includes(d);
+    const lab = document.createElement('label');
+    const w = wd[new Date(2026, 11, d).getDay()];
+    lab.innerHTML = `<input type="radio" name="cdate" value="${d}.12"${busy ? ' disabled' : ''}${!busy && first ? ' checked' : ''}><span>${d}<small>${busy ? 'занято' : w}</small></span>`;
+    if (!busy) first = false;
+    box.appendChild(lab);
+  }
+  const f = document.getElementById('corp-form');
+  f.consent.addEventListener('change', e => e.target.closest('label').classList.remove('err'));
+  f.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!f.name.value.trim() || f.phone.value.replace(/\D/g, '').length < 10) {
+      (f.name.value.trim() ? f.phone : f.name).focus();
+      return;
+    }
+    if (!f.consent.checked) { f.consent.closest('label').classList.add('err'); return f.consent.focus(); }
+    document.getElementById('corp-ok').classList.add('show');
+    f.querySelector('button').disabled = true;
+  });
 })();
 
 // форма брони (в демо без отправки)
